@@ -1,17 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bywjfy0shcmc4"]
+[gd_scene load_steps=3 format=3 uid="uid://bywjfy0shcmc4"]
 
 [ext_resource type="Script" path="res://scenes/enemies/drone.gd" id="1_bnwl5"]
 [ext_resource type="Texture2D" uid="uid://c1h4o4eef8dhd" path="res://graphics/enemies/drone.png" id="1_owpec"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p3xq5"]
-radius = 36.0139
-
 [node name="Drone" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 15
 script = ExtResource("1_bnwl5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_owpec")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_p3xq5")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-114, -12, -120, 17, -57, 11, -44, 45, -23, 55, 1, 59, 31, 53, 44, 44, 54, 20, 57, 5, 121, 1, 113, -25, 43, -33, 29, -47, 24, -54, 17, -52, 7, -55, -5, -57, -12, -51, -21, -55, -25, -49, -35, -41, -45, -31, -50, -25)

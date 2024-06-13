@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
-const speed: int = 400
 var can_laser: bool = true
 var can_grenade: bool = true
+
+@export var max_speed = 500
+var speed: int = max_speed
 
 signal laser(pos, direction)
 signal grenade(pos, direction)
@@ -20,6 +22,7 @@ func _process(_delta):
 
 	# for shooting laser
 	if Input.is_action_pressed("primary_action") and can_laser:
+		$GPUParticles2D.emitting = true
 		can_laser = false
 		$LaserTimer.start()
 		# randomly selected the marker for laser

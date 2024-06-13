@@ -1,21 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnbkgax8rw1y8"]
+[gd_scene load_steps=3 format=3 uid="uid://dnbkgax8rw1y8"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_apdr1"]
-[ext_resource type="PackedScene" uid="uid://dw323m3gld1jp" path="res://scenes/objects/gate.tscn" id="2_woe7g"]
 [ext_resource type="PackedScene" uid="uid://b1wrniskda1bt" path="res://scenes/player/player.tscn" id="3_6iyfw"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_apdr1")
 
-[node name="Gate" parent="." instance=ExtResource("2_woe7g")]
-position = Vector2(458, -199)
+[node name="Ground" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("3_6iyfw")]
 position = Vector2(496, 535)
 scale = Vector2(0.5, 0.5)
 
-[node name="Projecttiles" type="Node2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.6, 0.6)
+position_smoothing_enabled = true
 
-[connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
+[node name="Projecttiles" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Lights" type="Node2D" parent="."]
+
 [connection signal="grenade" from="Player" to="." method="_on_player_grenade"]
 [connection signal="laser" from="Player" to="." method="_on_player_laser"]
