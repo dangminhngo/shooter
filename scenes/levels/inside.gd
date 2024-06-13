@@ -6,5 +6,4 @@ func _on_exit_gate_area_body_entered(_body:Node2D):
 	call_deferred("change_to_outside_level")
 
 func change_to_outside_level():
-	get_tree().change_scene_to_file("res://scenes/levels/outside.tscn")
-	
+	TransitionLayer.change_to_scene("res://scenes/levels/outside.tscn")	
