@@ -14,11 +14,12 @@ var ui_colors = {
 
 
 func _ready():
-	laser_label.text = str(Globals.laser_amount)
-	grenade_label.text = str(Globals.grenade_amount)
-	player_health_progress.value = Globals.player_health	
-	update_ui_color(Globals.laser_amount, Globals.max_laser_amount, laser_label, laser_icon)
-	update_ui_color(Globals.grenade_amount, Globals.max_grenade_amount, grenade_label, grenade_icon)
+	Globals.connect("laser_amount_change", update_ui_laser)
+	Globals.connect("grenade_amount_change", update_ui_grenade)
+	Globals.connect("player_health_change", update_ui_health)
+	update_ui_laser()
+	update_ui_grenade()
+	update_ui_health()
 
 
 func update_ui_laser() -> void:
@@ -30,7 +31,7 @@ func update_ui_grenade() -> void:
 	grenade_label.text = str(Globals.grenade_amount)
 	update_ui_color(Globals.grenade_amount, Globals.max_grenade_amount, grenade_label, grenade_icon)
 
-func update_player_health_percentage():
+func update_ui_health():
 	player_health_progress.value = Globals.player_health	
 
 func update_ui_color(amount: int, max_amount: int, label: Label, icon: TextureRect) -> void:
