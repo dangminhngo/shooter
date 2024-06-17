@@ -3,6 +3,11 @@ class_name LevelBase
 
 var laser_scene: PackedScene = preload("res://scenes/projecttiles/laser.tscn")
 var grenade_scene: PackedScene = preload("res://scenes/projecttiles/grenade.tscn")
+var item_scene: PackedScene = preload("res://scenes/items/item.tscn")
+
+func _ready():
+	for item_container in get_tree().get_nodes_in_group("item_container"):
+		item_container.connect("open", _on_item_container_opened)
 
 func _on_player_laser(pos, direction):
 	var laser = laser_scene.instantiate() as Area2D
@@ -31,3 +36,9 @@ func _on_house_player_exited_house():
 	var tween = get_tree().create_tween()
 	tween.tween_property($Player/Camera2D, "zoom", Vector2(0.6, 0.6), 1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property($Player, "modulate:a", 1, 2)
+
+func _on_item_container_opened(pos:Vector2, dir: Vector2):
+	var item = item_scene.instantiate() as Area2D
+	item.position = pos
+	item.direction = dir
+	$Items.call_deferred("add_child", item)

@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://b1oilnpjfcnhb" path="res://scenes/objects/steam_vent.tscn" id="12_3akoe"]
 [ext_resource type="PackedScene" uid="uid://kq2lgah4r4li" path="res://scenes/objects/light_fan_animation.tscn" id="13_x4a4p"]
 [ext_resource type="PackedScene" uid="uid://dw323m3gld1jp" path="res://scenes/objects/gate.tscn" id="14_txuvl"]
+[ext_resource type="PackedScene" uid="uid://kfxlp2cxiu7y" path="res://scenes/objects/crate.tscn" id="15_50co3"]
 [ext_resource type="PackedScene" uid="uid://cidgnax1mlc07" path="res://scenes/objects/toilet.tscn" id="16_7n82n"]
-[ext_resource type="PackedScene" uid="uid://du2n47f3uuov4" path="res://scenes/objects/box.tscn" id="17_c5qip"]
 
 [sub_resource type="TileSet" id="TileSet_xplxc"]
 tile_size = Vector2i(390, 390)
@@ -90,9 +90,14 @@ frame_progress = 0.781366
 position = Vector2(458, -199)
 
 [node name="Toilet" parent="." index="3" instance=ExtResource("16_7n82n")]
-position = Vector2(662, 694)
+position = Vector2(538, 841)
+rotation = 1.5708
+collision_layer = 1
+collision_mask = 1
 
-[node name="Box" parent="." index="4" instance=ExtResource("17_c5qip")]
-position = Vector2(998, 532)
+[node name="Crate" parent="." index="4" instance=ExtResource("15_50co3")]
+position = Vector2(989, 731)
+collision_layer = 1
+collision_mask = 1
 
 [connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
