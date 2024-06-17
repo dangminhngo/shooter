@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dp12up6cg7mhx"]
+[gd_scene load_steps=18 format=3 uid="uid://dp12up6cg7mhx"]
 
 [ext_resource type="PackedScene" uid="uid://dnbkgax8rw1y8" path="res://scenes/levels/level.tscn" id="1_1hgt6"]
 [ext_resource type="Script" path="res://scenes/levels/outside.gd" id="2_onbc2"]
@@ -15,12 +15,30 @@
 [ext_resource type="PackedScene" uid="uid://dw323m3gld1jp" path="res://scenes/objects/gate.tscn" id="14_txuvl"]
 [ext_resource type="PackedScene" uid="uid://kfxlp2cxiu7y" path="res://scenes/objects/crate.tscn" id="15_50co3"]
 [ext_resource type="PackedScene" uid="uid://cidgnax1mlc07" path="res://scenes/objects/toilet.tscn" id="16_7n82n"]
+[ext_resource type="PackedScene" uid="uid://cr1sbo0w0ncx8" path="res://scenes/enemies/scout.tscn" id="16_b8saa"]
 
 [sub_resource type="TileSet" id="TileSet_xplxc"]
 tile_size = Vector2i(390, 390)
 
 [node name="Outside" instance=ExtResource("1_1hgt6")]
 script = ExtResource("2_onbc2")
+
+[node name="Objects" parent="." index="0"]
+z_index = 1
+
+[node name="Gate" parent="Objects" index="0" instance=ExtResource("14_txuvl")]
+position = Vector2(458, -199)
+
+[node name="Toilet" parent="Objects" index="1" instance=ExtResource("16_7n82n")]
+position = Vector2(538, 841)
+rotation = 1.5708
+collision_layer = 1
+collision_mask = 1
+
+[node name="Crate" parent="Objects" index="2" instance=ExtResource("15_50co3")]
+position = Vector2(989, 731)
+collision_layer = 1
+collision_mask = 1
 
 [node name="Soil" type="Sprite2D" parent="Ground" index="0"]
 texture_repeat = 2
@@ -86,18 +104,7 @@ scale = Vector2(0.4, 0.4)
 frame = 29
 frame_progress = 0.781366
 
-[node name="Gate" parent="." index="2" instance=ExtResource("14_txuvl")]
-position = Vector2(458, -199)
+[node name="Scout" parent="Enemies" index="0" instance=ExtResource("16_b8saa")]
+position = Vector2(1935, 555)
 
-[node name="Toilet" parent="." index="3" instance=ExtResource("16_7n82n")]
-position = Vector2(538, 841)
-rotation = 1.5708
-collision_layer = 1
-collision_mask = 1
-
-[node name="Crate" parent="." index="4" instance=ExtResource("15_50co3")]
-position = Vector2(989, 731)
-collision_layer = 1
-collision_mask = 1
-
-[connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
+[connection signal="player_entered_gate" from="Objects/Gate" to="." method="_on_gate_player_entered_gate"]

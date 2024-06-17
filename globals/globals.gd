@@ -28,3 +28,5 @@ var player_health = max_player_health:
 	set(value):
 		player_health = value	
 		player_health_change.emit()
+
+var player_pos: Vector2

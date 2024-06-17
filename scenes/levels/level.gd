@@ -9,20 +9,17 @@ func _ready():
 	for item_container in get_tree().get_nodes_in_group("item_container"):
 		item_container.connect("open", _on_item_container_opened)
 
+	for scout in get_tree().get_nodes_in_group("scouts"):
+		scout.connect("laser", _on_scout_laser)
+
 func _on_player_laser(pos, direction):
-	var laser = laser_scene.instantiate() as Area2D
-	laser.position = pos 
-	laser.rotation = direction.angle()
-	laser.direction = direction
-	$Projecttiles.add_child(laser)
-	$UI.update_ui_laser()
+	create_laser(pos, direction)
 
 func _on_player_grenade(pos, direction):
 	var grenade = grenade_scene.instantiate() as RigidBody2D
 	grenade.position = pos
 	grenade.linear_velocity = direction * grenade.speed
 	$Projecttiles.add_child(grenade)
-	$UI.update_ui_grenade()
 
 
 func _on_house_player_entered_house():
@@ -42,3 +39,14 @@ func _on_item_container_opened(pos:Vector2, dir: Vector2):
 	item.position = pos
 	item.direction = dir
 	$Items.call_deferred("add_child", item)
+
+func _on_scout_laser(pos: Vector2, dir: Vector2):
+	create_laser(pos, dir, Color(0.5, 0, 0, 1))
+
+func create_laser(pos: Vector2, dir: Vector2, clr: Color = Color(1, 1, 1, 1)):
+	var laser = laser_scene.instantiate() as Area2D
+	laser.modulate = clr 
+	laser.position = pos
+	laser.rotation = dir.angle()
+	laser.direction = dir
+	$Projecttiles.add_child(laser)

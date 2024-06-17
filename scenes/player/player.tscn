@@ -41,7 +41,7 @@ texture = ExtResource("1_oy0x4")
 shape = SubResource("CircleShape2D_1x124")
 
 [node name="LaserTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.3
 one_shot = true
 
 [node name="GrenadeTimer" type="Timer" parent="."]
